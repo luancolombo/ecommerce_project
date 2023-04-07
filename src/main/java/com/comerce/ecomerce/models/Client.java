@@ -12,18 +12,23 @@ public class Client implements Serializable {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
+    private String fiscalNumber;
+    @Column(nullable = false)
     private String birthDate;
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
     private String phoneNumber;
+    @OneToOne
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 
     public Client() {
     }
 
-    public Client(Long id, String name, String birthDate, String email, String phoneNumber) {
-        this.id = id;
+    public Client(String name, String fiscalNumber, String birthDate, String email, String phoneNumber) {
         this.name = name;
+        this.fiscalNumber = fiscalNumber;
         this.birthDate = birthDate;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -33,16 +38,20 @@ public class Client implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getFiscalNumber() {
+        return fiscalNumber;
+    }
+
+    public void setFiscalNumber(String fiscalNumber) {
+        this.fiscalNumber = fiscalNumber;
     }
 
     public String getBirthDate() {
@@ -67,5 +76,13 @@ public class Client implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

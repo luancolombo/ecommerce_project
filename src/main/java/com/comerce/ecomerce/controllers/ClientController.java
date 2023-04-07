@@ -44,9 +44,11 @@ public class ClientController {
         try {
             Client client = service.findById(id);
             client.setName(clientDto.getName());
+            client.setFiscalNumber(clientDto.getFiscalNumber());
             client.setBirthDate(clientDto.getBirthDate());
             client.setEmail(clientDto.getEmail());
             client.setPhoneNumber(clientDto.getPhoneNumber());
+            client.setAddress(clientDto.getAddress());
             return ResponseEntity.status(HttpStatus.OK).body(service.saveClient(client));
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(e.getMessage());
